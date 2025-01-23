@@ -62,6 +62,10 @@ namespace LKS_23
                                 this.Hide();
                             }
                         }
+                        else
+                        {
+                           MessageBox.Show("Username atau Password salah", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
 
