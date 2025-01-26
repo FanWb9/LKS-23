@@ -71,18 +71,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(276, 106);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Username";
+            this.label2.Text = "Email";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(280, 186);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 20);
+            this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Lastname";
+            this.label3.Text = "Password";
             // 
             // pictureBox1
             // 
