@@ -193,5 +193,11 @@ namespace LKS_23
 
             }
         }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        e.Handled =!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+
     }
 }
