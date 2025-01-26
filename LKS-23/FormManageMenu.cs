@@ -124,7 +124,7 @@ namespace LKS_23
                 txtLast.Text = selectedRow.Cells["LastName"].Value.ToString();
                 txtEmail.Text = selectedRow.Cells["Email"].Value.ToString();
                 txtPhone.Text = selectedRow.Cells["PhoneNumber"].Value.ToString();
-                txtPass.Text = ""; 
+                txtPass.Text = "";
 
                 UpdateId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 IsUpdate = true;
@@ -196,8 +196,32 @@ namespace LKS_23
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
-        e.Handled =!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
         }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                conn.Open();
+                if (dgManage.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dgManage.SelectedRows[0];
+                    UpdateId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                    string query = "Delete from users where ID = @ID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", UpdateId);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Data has been deleted");
+                        Isdata();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to delete");
+                }
+            }
+        }
     }
 }

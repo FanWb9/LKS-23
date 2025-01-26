@@ -185,6 +185,7 @@
             this.btnDel.TabIndex = 15;
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnCancel
             // 
