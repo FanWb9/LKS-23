@@ -162,7 +162,7 @@ namespace LKS_23
                 conn.Open();
                 if (isUpdate)
                 {
-                   
+                   //
                     string query = "Update Menus set Name = @Name, Description = @Description, Price = @Price, CategoryID = (Select ID from Categories where Name = @CategoryName) where ID = @ID";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
