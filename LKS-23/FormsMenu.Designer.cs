@@ -35,12 +35,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.CbCat = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numPric = new System.Windows.Forms.NumericUpDown();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtDesc = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPric)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,6 +64,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(232, 26);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // DgMenu
             // 
@@ -106,12 +112,12 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Price";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 386);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 26);
-            this.textBox1.TabIndex = 7;
+            this.txtName.Location = new System.Drawing.Point(151, 386);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(218, 26);
+            this.txtName.TabIndex = 7;
             // 
             // CbCat
             // 
@@ -122,31 +128,82 @@
             this.CbCat.TabIndex = 8;
             this.CbCat.SelectedIndexChanged += new System.EventHandler(this.CbCat_SelectedIndexChanged);
             // 
-            // listBox1
+            // numPric
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(151, 501);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(218, 84);
-            this.listBox1.TabIndex = 10;
+            this.numPric.Location = new System.Drawing.Point(151, 614);
+            this.numPric.Name = "numPric";
+            this.numPric.Size = new System.Drawing.Size(218, 26);
+            this.numPric.TabIndex = 11;
             // 
-            // numericUpDown1
+            // btnInsert
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(151, 614);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(218, 26);
-            this.numericUpDown1.TabIndex = 11;
+            this.btnInsert.Location = new System.Drawing.Point(558, 430);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(102, 38);
+            this.btnInsert.TabIndex = 12;
+            this.btnInsert.Text = "Insert";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(689, 430);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(102, 38);
+            this.btnUpdate.TabIndex = 13;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(812, 430);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(102, 38);
+            this.btnDel.TabIndex = 14;
+            this.btnDel.Text = "Delete";
+            this.btnDel.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(626, 483);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(102, 38);
+            this.btnCancel.TabIndex = 15;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(756, 483);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(102, 38);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // txtDesc
+            // 
+            this.txtDesc.Location = new System.Drawing.Point(151, 489);
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(218, 96);
+            this.txtDesc.TabIndex = 17;
+            this.txtDesc.Text = "";
             // 
             // FormsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 687);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.txtDesc);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnDel);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnInsert);
+            this.Controls.Add(this.numPric);
             this.Controls.Add(this.CbCat);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -158,7 +215,7 @@
             this.Text = "FormsMenu";
             this.Load += new System.EventHandler(this.FormsMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,9 +230,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.ComboBox CbCat;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numPric;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.RichTextBox txtDesc;
     }
 }
