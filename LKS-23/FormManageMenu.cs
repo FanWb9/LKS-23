@@ -221,6 +221,7 @@ namespace LKS_23
                 {
                     MessageBox.Show("Please select a row to delete");
                 }
+                Isdata();
             }
         }
     }
