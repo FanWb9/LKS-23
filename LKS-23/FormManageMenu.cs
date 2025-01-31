@@ -107,6 +107,7 @@ namespace LKS_23
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            IsUpdate = false;
             SecondAction();
         }
 
