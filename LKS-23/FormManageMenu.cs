@@ -13,7 +13,7 @@ namespace LKS_23
 {
     public partial class FormManageMenu : Form
     {
-        private Boolean IsUpdate = true;
+        private Boolean IsUpdate = false;
         private int UpdateId;
         public FormManageMenu()
         {
@@ -25,6 +25,34 @@ namespace LKS_23
             Isdata();
             FirstAction();
         }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private bool IsEmailUnique(string email)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                conn.Open();
+                string query = "Select Count(*) from users where Email = @Email";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count == 0;
+                }
+            }
+        }
+
         private void Isdata()
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -52,7 +80,7 @@ namespace LKS_23
             txtFirst.Text = "";
             txtLast.Text = "";
             txtEmail.Text = "";
-            txtPhone.Text = "";
+            txtPhone.Text = ""; 
             txtPass.Text = "";
 
 
@@ -107,6 +135,7 @@ namespace LKS_23
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            IsUpdate = false;
             SecondAction();
         }
 
@@ -143,6 +172,22 @@ namespace LKS_23
                 MessageBox.Show("Please fill all the fields");
                 return;
             }
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Please enter a valid email address");
+                return;
+            }
+
+            if (!IsEmailUnique(txtEmail.Text))
+            {
+                MessageBox.Show("Email already exists");
+                return;
+            }
+            //if (!txtEmail.Text.Contains("@"))
+            //{
+            //    MessageBox.Show("Email harus menggunakan format @");
+            //    return;
+            //}
             string phoneNumber = txtPhone.Text;
             if (phoneNumber.Length < 10 || phoneNumber.Length > 15)
             {
@@ -176,7 +221,7 @@ namespace LKS_23
                 }
                 else
                 {
-                    string query = "Insert into users (FirstName, LastName, Email, PhoneNumber, Password) values (@FirstName, @LastName, @Email, @PhoneNumber, @Password)";
+                    string query = "Insert into users (FirstName, LastName, Email, PhoneNumber, Password,DateJoined,RoleID) values (@FirstName, @LastName, @Email, @PhoneNumber, @Password,@DateJoined,@Role)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@FirstName", txtFirst.Text);
@@ -184,6 +229,8 @@ namespace LKS_23
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                         cmd.Parameters.AddWithValue("@PhoneNumber", txtPhone.Text);
                         cmd.Parameters.AddWithValue("@Password", txtPass.Text);
+                        cmd.Parameters.AddWithValue("@Role", 2);
+                        cmd.Parameters.AddWithValue("@DateJoined", DateTime.Now.ToString("HH:mm:ss"));
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Data has been inserted");
                     }

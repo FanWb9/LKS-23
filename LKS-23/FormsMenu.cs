@@ -102,7 +102,7 @@ namespace LKS_23
 
         private void FormsMenu_Load(object sender, EventArgs e)
         {
-            cmData();
+             cmData();
             showData();
             firstAction();
         }
