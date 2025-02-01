@@ -153,7 +153,7 @@ namespace LKS_23
                 txtLast.Text = selectedRow.Cells["LastName"].Value.ToString();
                 txtEmail.Text = selectedRow.Cells["Email"].Value.ToString();
                 txtPhone.Text = selectedRow.Cells["PhoneNumber"].Value.ToString();
-                txtPass.Text = "";
+                txtPass.Text = selectedRow.Cells["password"].Value.ToString();
 
                 UpdateId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 IsUpdate = true;
@@ -230,7 +230,7 @@ namespace LKS_23
                         cmd.Parameters.AddWithValue("@PhoneNumber", txtPhone.Text);
                         cmd.Parameters.AddWithValue("@Password", txtPass.Text);
                         cmd.Parameters.AddWithValue("@Role", 2);
-                        cmd.Parameters.AddWithValue("@DateJoined", DateTime.Now.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@DateJoined", DateTime.Now.ToString("yyyy-MM-dd"));
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Data has been inserted");
                     }
