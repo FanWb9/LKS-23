@@ -50,7 +50,7 @@ namespace LKS_23
             using (SqlConnection conn = Database.GetConnection())
             {
                 conn.Open();
-                string query = "Select Menus.Name as 'Name', Categories.Name as 'Category', Menus.Description as 'Description', Menus.Price as 'Price' from Menus Inner Join Categories on Menus.CategoryID = Categories.ID";
+                string query = "Select Menus.ID, Menus.Name as 'Name', Categories.Name as 'Category', Menus.Description as 'Description', Menus.Price as 'Price' from Menus Inner Join Categories on Menus.CategoryID = Categories.ID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -60,6 +60,11 @@ namespace LKS_23
                         DgMenu.DataSource = dt;
                         DgMenu.Columns["Price"].DefaultCellStyle.Format = "C";
                         DgMenu.Columns["Price"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("id-ID");
+
+                        if (DgMenu.Columns["ID"] != null)
+                        {
+                            DgMenu.Columns["ID"].Visible = false;
+                        }
                     }
                 }
             }
@@ -147,51 +152,67 @@ namespace LKS_23
         private void btnInsert_Click(object sender, EventArgs e)
         {
             secondAction();
+            isUpdate = false;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtDesc.Text))
-            {
-                MessageBox.Show("Please fill all the fields");
-                return;
+            if (DgMenu.SelectedRows.Count > 0) { 
+            DataGridViewRow row = DgMenu.SelectedRows[0];
+            txtName.Text = row.Cells["Name"].Value.ToString();
+            txtDesc.Text = row.Cells["Description"].Value.ToString();
+            numPric.Text = row.Cells["Price"].Value.ToString();
+            CbCat.Text = row.Cells["Category"].Value.ToString();
+            UpdateID = Convert.ToInt32(row.Cells["ID"].Value);
+            isUpdate = true;
+            showData();
+            secondAction();
             }
+        }
 
-            using (SqlConnection conn = Database.GetConnection())
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtDesc.Text))
             {
+                MessageBox.Show("silahkan lengkapi data");
+            }
+            using (SqlConnection conn = Database.GetConnection()) {
                 conn.Open();
                 if (isUpdate)
                 {
-                   //
-                    string query = "Update Menus set Name = @Name, Description = @Description, Price = @Price, CategoryID = (Select ID from Categories where Name = @CategoryName) where ID = @ID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                        cmd.Parameters.AddWithValue("@Description", txtDesc.Text);
-                        cmd.Parameters.AddWithValue("@Price", numPric.Value);
-                        cmd.Parameters.AddWithValue("@CategoryName", CbCat.Text);
-                        cmd.Parameters.AddWithValue("@ID", UpdateID);
+                    string query = "Update Menus set Name = @name , Description = @desc, Price = @price , CategoryID = (Select ID from Categories where Name = @Category) Where ID = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.Parameters.AddWithValue("Name", txtName.Text);
+                        cmd.Parameters.AddWithValue("@price", numPric.Text);
+                        cmd.Parameters.AddWithValue("@desc",txtDesc.Text);
+                        cmd.Parameters.AddWithValue("@Category",CbCat.Text);
+                        cmd.Parameters.AddWithValue("@id", UpdateID);
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data has been updated");
+                        MessageBox.Show("Data Berhasil Di Perbarui");
                     }
                 }
                 else
                 {
-                   
-                    string query = "Insert into Menus (Name, Description, Price, CategoryID) values (@Name, @Description, @Price, (Select ID from Categories where Name = @CategoryName))";
+                    string query = "Insert Into Menus(Name,Description,Price,CategoryID) values(@Name,@Description,@Price,(select ID from Categories where Name = @Category))";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                        cmd.Parameters.AddWithValue("@Description", txtDesc.Text);
-                        cmd.Parameters.AddWithValue("@Price", numPric.Value);
-                        cmd.Parameters.AddWithValue("@CategoryName", CbCat.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data has been inserted");
+                        cmd.Parameters.AddWithValue("@Name",txtName.Text);
+                        cmd.Parameters.AddWithValue("@Description",txtDesc.Text);
+                        cmd.Parameters.AddWithValue("@price",numPric.Text);
+                        cmd.Parameters.AddWithValue("@Category",CbCat.Text);
+                        cmd.ExecuteNonQuery ();
+                        MessageBox.Show("Data Berhasil di Masukan");
                     }
                 }
                 showData();
                 firstAction();
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            firstAction();
+            showData();
         }
     }
 }

@@ -130,7 +130,12 @@
             // 
             // numPric
             // 
-            this.numPric.Location = new System.Drawing.Point(151, 614);
+            this.numPric.Location = new System.Drawing.Point(151, 615);
+            this.numPric.Maximum = new decimal(new int[] {
+            -1486618624,
+            232830643,
+            0,
+            0});
             this.numPric.Name = "numPric";
             this.numPric.Size = new System.Drawing.Size(218, 26);
             this.numPric.TabIndex = 11;
@@ -172,6 +177,7 @@
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -181,6 +187,7 @@
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtDesc
             // 
