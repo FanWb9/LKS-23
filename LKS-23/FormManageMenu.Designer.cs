@@ -231,7 +231,7 @@
             this.Controls.Add(this.txtSearc);
             this.Controls.Add(this.label1);
             this.Name = "FormManageMenu";
-            this.Text = "FormManageMenu";
+            this.Text = "EsemkaFoodCourt";
             this.Load += new System.EventHandler(this.FormManageMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgManage)).EndInit();
             this.ResumeLayout(false);

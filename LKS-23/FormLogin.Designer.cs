@@ -151,7 +151,7 @@
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
-            this.Text = "Form1";
+            this.Text = "EsemkaFoodCourt";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -219,7 +219,7 @@
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
             this.Name = "FormsMenu";
-            this.Text = "FormsMenu";
+            this.Text = "EsemkaFoodCourt";
             this.Load += new System.EventHandler(this.FormsMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPric)).EndInit();

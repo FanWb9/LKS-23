@@ -124,7 +124,7 @@
             this.Controls.Add(this.lbJam);
             this.Controls.Add(this.lbName);
             this.Name = "FormAdmin";
-            this.Text = "FormAdmin";
+            this.Text = "EsemkaFoodCourt";
             this.Load += new System.EventHandler(this.FormAdmin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
