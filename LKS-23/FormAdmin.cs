@@ -47,5 +47,12 @@ namespace LKS_23
             formsMenu.Show();
             this.Hide();
         }
+
+        private void btnIngre_Click(object sender, EventArgs e)
+        {
+            FormManageMenuIngredient formManageMenuIngredient = new FormManageMenuIngredient();
+            formManageMenuIngredient.Show();
+            this.Hide();
+        }
     }
 }

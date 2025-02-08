@@ -92,6 +92,7 @@
             this.btnIngre.TabIndex = 4;
             this.btnIngre.Text = "Manage Menu Ingredients";
             this.btnIngre.UseVisualStyleBackColor = true;
+            this.btnIngre.Click += new System.EventHandler(this.btnIngre_Click);
             // 
             // btnView
             // 

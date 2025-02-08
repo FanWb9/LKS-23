@@ -65,6 +65,12 @@
     <Compile Include="FormManageMenu.Designer.cs">
       <DependentUpon>FormManageMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManageMenuIngredient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageMenuIngredient.Designer.cs">
+      <DependentUpon>FormManageMenuIngredient.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageMenu.resx">
       <DependentUpon>FormManageMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageMenuIngredient.resx">
+      <DependentUpon>FormManageMenuIngredient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegis.resx">
       <DependentUpon>FormRegis.cs</DependentUpon>
