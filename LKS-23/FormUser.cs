@@ -14,16 +14,27 @@ namespace LKS_23
     {
         private string FirstName;
         private string LastName;
-        public FormUser( string firstName, string lastName)
+        private string PhoneNumber;
+        private string Email;
+        public FormUser( string firstName, string lastName, string phoneNumber, string email)
         {
             InitializeComponent();
             FirstName = firstName;
             LastName = lastName;
+            PhoneNumber = phoneNumber;
+            Email = email;
         }
 
         private void FormUser_Load(object sender, EventArgs e)
         {
             lbName.Text = $"Welcome {FirstName}{LastName}";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormReserveTable formReserveTable = new FormReserveTable(FirstName,LastName,Email,PhoneNumber);
+            formReserveTable.Show();
+            this.Hide();
         }
     }
 }

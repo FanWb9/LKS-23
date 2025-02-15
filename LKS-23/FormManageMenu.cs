@@ -153,7 +153,7 @@ namespace LKS_23
                 txtLast.Text = selectedRow.Cells["LastName"].Value.ToString();
                 txtEmail.Text = selectedRow.Cells["Email"].Value.ToString();
                 txtPhone.Text = selectedRow.Cells["PhoneNumber"].Value.ToString();
-                txtPass.Text = selectedRow.Cells["password"].Value.ToString();
+                txtPass.Text = "";
 
                 UpdateId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 IsUpdate = true;
@@ -167,6 +167,7 @@ namespace LKS_23
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //txtName.text = "" or ||
             if (string.IsNullOrEmpty(txtFirst.Text) || string.IsNullOrEmpty(txtLast.Text) || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPhone.Text) || string.IsNullOrEmpty(txtPass.Text))
             {
                 MessageBox.Show("Please fill all the fields");

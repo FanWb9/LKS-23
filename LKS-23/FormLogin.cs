@@ -31,8 +31,9 @@ namespace LKS_23
             {
                 //sesudah memanggil jangan lupa di buka
                 conn.Open();
+               
                 //buat suatu query dengan memlih apa yang di minta di soal tersebut 
-                string query = "Select RoleID,FirstName,LastName from users where email = @email and password = @password";
+                string query = "Select RoleID,FirstName,LastName,Email,PhoneNumber from users where email = @email and password = @password";
                 //membuat command dengan memanggil query dan conn
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -48,16 +49,19 @@ namespace LKS_23
                             int role = reader.GetInt32(0);
                             string FirstName = reader.GetString(1);
                             string LastName = reader.GetString(2);
+                            string Email = reader.GetString(3);
+                            string PhoneNumber = reader.GetString(4);
 
                             if (role == 1)
                             {
                                 FormAdmin formAdmin = new FormAdmin(FirstName, LastName);
                                 formAdmin.Show();
                                 this.Hide();
+                                //FormAdmin.show();
                             }
                             else if (role == 2)
                             {
-                                FormUser formUser = new FormUser(FirstName, LastName);
+                                FormUser formUser = new FormUser(FirstName, LastName,PhoneNumber,Email);
                                 formUser.Show();
                                 this.Hide();
                             }

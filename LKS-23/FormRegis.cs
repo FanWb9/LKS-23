@@ -53,7 +53,7 @@ namespace LKS_23
                     cmd.Parameters.AddWithValue("@RoleID", 2);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Welcome EsemkaFoodCourt");
-                    FormUser formUser = new FormUser(txtFirst.Text, txtLast.Text);
+                    FormUser formUser = new FormUser(txtFirst.Text, txtLast.Text,txtEmail.Text,txtPhone.Text);
                     formUser.Show();
                     this.Hide();
                 }
