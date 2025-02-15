@@ -59,6 +59,10 @@ namespace LKS_23
         {
            FirstAction();
             ShowCombo();
+            lbMenuTotal.Visible = false;
+            lbTotalPrice.Visible = false;
+            dgMenu.ScrollBars = ScrollBars.Vertical;
+            dgMenu.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
         }
 
         private void txtLast_TextChanged(object sender, EventArgs e)
@@ -98,7 +102,7 @@ namespace LKS_23
             decimal total = 0;
             foreach (DataRow row in DtCart.Rows)
             {
-                total += Convert.ToDecimal(row["Subtotal"].ToString().Replace("Rp", "").Replace(".", "").Trim());
+                total += Convert.ToDecimal(row["SubTotal"].ToString().Replace("Rp", "").Replace(".", "").Trim());
             }
 
             decimal reservationFee = 50000;
@@ -124,7 +128,7 @@ namespace LKS_23
                         decimal price = Convert.ToDecimal(priceObj);
                         decimal subtotal = price * qty;
 
-                        // Check for duplicate item
+                       
                         foreach (DataRow row in DtCart.Rows)
                         {
                             if (row["Name"].ToString() == selectedItem)
@@ -146,6 +150,17 @@ namespace LKS_23
             }
 
             UpdateTotal();
+            lbMenuTotal.Visible = true;
+            lbTotalPrice.Visible = true;
+        }
+
+        private void dgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && dgMenu.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                dgMenu.Rows.RemoveAt(e.RowIndex);
+                UpdateTotal();
+            }
         }
     }
  }

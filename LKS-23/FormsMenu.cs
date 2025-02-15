@@ -214,5 +214,15 @@ namespace LKS_23
             firstAction();
             showData();
         }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

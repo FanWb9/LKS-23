@@ -75,6 +75,7 @@
             this.dgManage.RowTemplate.Height = 28;
             this.dgManage.Size = new System.Drawing.Size(680, 320);
             this.dgManage.TabIndex = 2;
+            this.dgManage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgManage_CellContentClick);
             // 
             // label2
             // 

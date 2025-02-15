@@ -75,6 +75,7 @@
             this.DgMenu.RowTemplate.Height = 28;
             this.DgMenu.Size = new System.Drawing.Size(738, 293);
             this.DgMenu.TabIndex = 2;
+            this.DgMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgMenu_CellContentClick);
             // 
             // label2
             // 
@@ -168,6 +169,7 @@
             this.btnDel.TabIndex = 14;
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnCancel
             // 

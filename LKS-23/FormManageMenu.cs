@@ -272,5 +272,10 @@ namespace LKS_23
                 Isdata();
             }
         }
+
+        private void dgManage_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
