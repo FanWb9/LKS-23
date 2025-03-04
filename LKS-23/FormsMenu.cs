@@ -217,7 +217,20 @@ namespace LKS_23
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-
+            using (SqlConnection conn = Database.GetConnection()) {
+                conn.Open ();
+                if (DgMenu.SelectedRows.Count > 0) {
+                    DataGridViewRow row = DgMenu.SelectedRows[0];
+                    UpdateID = Convert.ToInt32(row.Cells["ID"].Value);
+                    string query = "Delete from Menus where ID = @ID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                        cmd.Parameters.AddWithValue("@ID", UpdateID);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Data Berhasil Di hapus");
+                        showData();
+                    }
+                }
+            }
         }
 
         private void DgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)

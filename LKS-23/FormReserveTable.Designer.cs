@@ -96,7 +96,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtLast);
             this.groupBox1.Controls.Add(this.txtFirst);
-            this.groupBox1.Location = new System.Drawing.Point(47, 134);
+            this.groupBox1.Location = new System.Drawing.Point(38, 172);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(395, 295);
             this.groupBox1.TabIndex = 4;
@@ -142,7 +142,7 @@
             // ckEnable
             // 
             this.ckEnable.AutoSize = true;
-            this.ckEnable.Location = new System.Drawing.Point(68, 448);
+            this.ckEnable.Location = new System.Drawing.Point(59, 460);
             this.ckEnable.Name = "ckEnable";
             this.ckEnable.Size = new System.Drawing.Size(290, 24);
             this.ckEnable.TabIndex = 5;

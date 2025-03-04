@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Security.Cryptography;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,19 @@ namespace LKS_23
         public FormLogin()
         {
             InitializeComponent();
+        }
+
+        //membuat hasPassword pada sistem login menggunakan MD5
+        private string openEncp(string rawData)
+        {
+            using (MD5 md5 = MD5.Create()) {
+                byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes) { 
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
 
         private void btnLog_Click(object sender, EventArgs e)
@@ -35,11 +49,13 @@ namespace LKS_23
                 //buat suatu query dengan memlih apa yang di minta di soal tersebut 
                 string query = "Select RoleID,FirstName,LastName,Email,PhoneNumber from users where email = @email and password = @password";
                 //membuat command dengan memanggil query dan conn
+
+                string HasPassword = openEncp(txtPas.Text);
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     //menguhubungkan command terhadap parameter yang di minta di query
                     cmd.Parameters.AddWithValue("@email", txtUser.Text);
-                    cmd.Parameters.AddWithValue("@password", txtPas.Text);
+                    cmd.Parameters.AddWithValue("@password", HasPassword);
                     //Data reader di gunakan khusus membaca saja
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
