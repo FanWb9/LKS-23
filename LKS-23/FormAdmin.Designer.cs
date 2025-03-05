@@ -82,6 +82,7 @@
             this.btnMmenu.TabIndex = 3;
             this.btnMmenu.Text = "Manage Menu";
             this.btnMmenu.UseVisualStyleBackColor = true;
+            this.btnMmenu.Click += new System.EventHandler(this.btnMmenu_Click);
             // 
             // btnIngre
             // 
