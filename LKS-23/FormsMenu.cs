@@ -219,13 +219,25 @@ namespace LKS_23
         {
             using (SqlConnection conn = Database.GetConnection()) {
                 conn.Open ();
-                if (DgMenu.SelectedRows.Count > 0) {
+                if (DgMenu.SelectedRows.Count > 0)
+                {
                     DataGridViewRow row = DgMenu.SelectedRows[0];
-                    UpdateID = Convert.ToInt32(row.Cells["ID"].Value);
-                    string query = "Delete from Menus where ID = @ID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn)) {
-                        cmd.Parameters.AddWithValue("@ID", UpdateID);
-                        cmd.ExecuteNonQuery();
+                    DialogResult result = MessageBox.Show("Apakah Anda Yakin Untuk mengahapus Data ?", "Confrim Hapus", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    if (result == DialogResult.Yes) {
+                        UpdateID = Convert.ToInt32(row.Cells["ID"].Value);
+                        SqlTransaction transaction  = conn.BeginTransaction();
+                        string query1 = "Delete From MenuIngredients where MenuID = @id";
+                        using (SqlCommand cmd = new SqlCommand(query1, conn,transaction)) {
+                            cmd.Parameters.AddWithValue("id", UpdateID);
+                            cmd.ExecuteNonQuery ();
+                        }
+                        string query2 = "Delete from Menus Where ID = @id";
+                        using(SqlCommand cmd2 = new SqlCommand(query2, conn, transaction))
+                        {
+                            cmd2.Parameters.AddWithValue("id",UpdateID);
+                            cmd2.ExecuteNonQuery ();
+                        }
+                        transaction.Commit ();
                         MessageBox.Show("Data Berhasil Di hapus");
                         showData();
                     }

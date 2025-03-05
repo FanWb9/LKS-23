@@ -249,28 +249,24 @@ namespace LKS_23
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = Database.GetConnection())
-            {
+            using (SqlConnection conn = Database.GetConnection()) { 
                 conn.Open();
-                if (dgManage.SelectedRows.Count > 0)
-                {
-                    DataGridViewRow selectedRow = dgManage.SelectedRows[0];
-                    UpdateId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-                    string query = "Delete from users where ID = @ID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@ID", UpdateId);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data has been deleted");
-                        Isdata();
+                if (dgManage.SelectedRows.Count > 0) { 
+                    DialogResult result = MessageBox.Show("Apakah Anda Yakin Untuk Menghapus Data ?","Confrim Hapus",MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes) { 
+                        DataGridViewRow  row = dgManage.SelectedRows[0];
+                        UpdateId = Convert.ToInt32(row.Cells["ID"].Value);
+                        string query = "Delete from users where id = @id";
+                        using (SqlCommand cmd = new SqlCommand(query, conn)) { 
+                            cmd.Parameters.AddWithValue("id",UpdateId);
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Data Berhasil Di hapus");
+                        }
                     }
+                    Isdata() ;
                 }
-                else
-                {
-                    MessageBox.Show("Please select a row to delete");
-                }
-                Isdata();
             }
+            
         }
 
         private void dgManage_CellContentClick(object sender, DataGridViewCellEventArgs e)
